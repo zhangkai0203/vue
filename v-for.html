@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>v-for</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			
+		    <input type="text" v-model="news.name" name="name" id="" value="" placeholder="姓名" />
+		    <input type="number" v-model="news.age" name="age" id="" value="" placeholder="年龄" />
+			<select v-model="news.sex">
+				<option value="1" selected="selected">男</option>
+				<option value="0">女</option>
+			</select>
+			<button @click="add">添加会员</button>
+			
+			
+			<table width="500" border="1" cellspacing="" cellpadding="">
+				<tr>
+					<th>id</th>
+					<th>姓名</th>
+					<th>年龄</th>
+					<th>性别</th>
+					<th>操作</th>
+				</tr>
+				<tr v-for="(item,index) in user">
+					<td>{{index}}</td>
+					<td>{{item.name}}</td>
+					<td>{{item.age}}</td>
+					<td v-if="item.sex == 1">男</td>
+					<td v-else="item.sex == 0">女</td>
+					<td align="center">
+						<button @click="del(index)">删除</button>
+					</td>
+				</tr>
+				
+			</table>
+			
+		</div>
+		
+	</body>
+	
+	<script>
+		var app = new Vue({
+			el:'#app',
+			data:{
+				news:{
+					name:'',
+					age:0,
+					sex:1
+				},
+				user:[{
+					name:'zhangsan',
+					age:12,
+					sex:1
+				},{
+					name:'lisi',
+					age:13,
+					sex:1
+				},{
+					name:'xiaohua',
+					age:12,
+					sex:0
+				}]
+			},
+			methods:{
+				add:function(){
+					
+					if(this.news.name == '' || this.news.name == null){
+						alert('用户名不能为空');return;
+					}
+					
+					
+					this.user.push(this.news)
+					//清空输入框
+					this.news = {name:'',age:0,sex:1}
+				},
+				del:function(index){
+					
+					if(window.confirm('确认删除吗？')){
+						this.user.splice(index,1)
+					}
+					
+				}
+			}
+		})
+	</script>
+</html>

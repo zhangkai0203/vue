@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			
+			<h1>hello vue</h1>
+			
+			<h1 v-if="yes">yes</h1>
+			
+			<h1 v-if="no">no</h1>
+			
+			<h1 v-if="age >= 25">age:{{age}}</h1>
+			<h1 v-else>sfdfsdf</h1>
+			
+			<h1 v-if="name.indexOf('zhangsan') >= 0">{{name}}</h1>
+			
+		</div>
+		
+		<div id="app2">
+			
+			<h1>hello vue</h1>
+			
+			<h1 v-show="yes">yes</h1>
+			
+			<h1 v-show="no">no</h1>
+			
+			<h1 v-show="age >= 25">age:{{age}}</h1>
+			<h1 v-else>aaaaaa</h1>
+			
+			
+			
+		</div>
+		
+		
+	</body>
+	<script>
+		var app = new Vue({
+			el:'#app',
+			data:{
+				yes:true,
+				no:false,
+				age:24,
+				name:'zhangsan'
+			}
+		})
+		var app2 = new Vue({
+			el:'#app2',
+			data:{
+				yes:true,
+				no:false,
+				age:24,
+				name:'lisi'
+			}
+		})
+	</script>
+</html>

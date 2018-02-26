@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>购买加减实例</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+		    <button @click="jia()">+</button>
+		    <input type="text" v-model="num"/>
+		    <button @click="jian()">-</button>
+		</div>
+	</body>
+	<script>
+		$app = new Vue({
+			el:'#app',
+			data:{
+				num:1
+			},
+			methods:{
+				jia:function(){
+					this.num ++;
+				},
+				jian:function(){
+					if(this.num <= 1)return
+					this.num --;
+				}
+			}
+		})
+	</script>
+</html>
