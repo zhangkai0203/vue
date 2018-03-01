@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>props</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<my-con msg="hello world"></my-con>
+		</div>
+		
+		
+	</body>
+	<script>
+		
+		//组件
+		Vue.component('my-con',{
+			props:['msg'],
+			template:'<h1>{{msg}}</h1>'
+		})
+		
+		
+		var app = new Vue({
+			el:'#app'
+		})
+	</script>
+</html>

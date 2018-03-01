@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+		<style>
+			.red{
+				color: red;
+			}
+			.f{
+				font-size: 25px;
+			}
+		</style>	
+	</head>
+	<body>
+		
+		<div id="app">
+			<p v-bind:class="[red,font]">{{msg}}</p>
+			<p v-html="html"></p>
+			<a v-bind:href="url">url</a>
+		</div>
+			
+	</body>
+	
+	<script>
+		var app = new Vue({
+			el:'#app',
+			data:{
+				msg:'demo',
+				red:'red',
+				font:'f',
+				html:'<a href="www.baidu.com">百度</a>',
+				url:'http://www.baidu.com'
+			}
+		})
+		app.red = false
+		
+	</script>
+</html>

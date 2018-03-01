@@ -7,9 +7,9 @@
 	</head>
 	<body>
 		<div id="app">
-		    <button @click="jia()">+</button>
+		    <button @click="num++">+</button>
 		    <input type="text" v-model="num"/>
-		    <button @click="jian()">-</button>
+		    <button @click="num <= 0 ? num:num--">-</button>
 		</div>
 	</body>
 	<script>
@@ -18,15 +18,7 @@
 			data:{
 				num:1
 			},
-			methods:{
-				jia:function(){
-					this.num ++;
-				},
-				jian:function(){
-					if(this.num <= 1)return
-					this.num --;
-				}
-			}
+			
 		})
 	</script>
 </html>

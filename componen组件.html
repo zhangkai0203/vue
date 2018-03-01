@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>组件</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<my-con></my-con>
+		</div>
+		
+		<div id="app2">
+			<my-con></my-con>
+		</div>
+		
+		
+	</body>
+	<script>
+		Vue.component("my-con",{
+			template:"<p>{{name}}<button v-on:click=\"changname('李四')\">修改姓名</button></p>",
+			data:function(){
+				return {
+					name:'张三'
+				}
+			},
+			methods:{
+				changname:function(name){
+					this.name = name
+				}
+			}
+		})
+		
+		new Vue({
+			el:'#app'
+		})
+		
+		new Vue({
+			el:'#app2'
+		})
+		
+		
+	</script>
+</html>
