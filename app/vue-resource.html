@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-resource</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="node_modules/vue-resource/dist/vue-resource.js"></script>
+</head>
+<body>
+     <div id="app">
+         <h1>vue-resource</h1>
+         <button @click="get">get发送数据</button>
+         <button @click="post">post发送数据</button>
+         <button @click="jsonp">jsonp发送数据</button>
+         <button @click="http">http发送</button>
+         <br>
+         <span>{{msg}}</span>
+     </div>
+     <script>
+         var aapp = new Vue({
+             el:'#app',
+             data:{
+                 msg:'hello world'
+             },
+             mounted:function () {
+                 Vue.http.interceptors.push(function (resqust,next) {
+                     //请求发送前的处理
+                     next(function (response) {
+                         //请求后的处理
+                         return response;
+                     })
+                 })
+             },
+             http:{root:'https://api.douban.com/v2/movie/'},
+             methods:{
+                 get:function () {
+                     //https://api.douban.com/v2/movie/in_theaters?city=%E5%8C%97%E4%BA%AC&start=0&count=10
+                     this.$http.get("in_theaters",{
+                         params:{
+                             city:'北京',
+                             start:0,
+                             count:10
+                         },
+                         header:{
+                             //token:'movie'
+                         }
+                     }).then(res =>{
+                         this.msg = res.data;
+                     },error =>{
+                         this.msg = error;
+                     })
+                 },
+                 post:function () {
+                     this.$http.post("in_theaters",{
+                         city:'北京',
+                         start:0,
+                         count:10
+                     },{
+                          headers:{
+                              access_token:"abc"
+                          }
+                     }).then(function (res) {
+                          console.log(res)
+                     },error(function (err) {
+                           this.msg = err
+                     }));
+                 },
+                 jsonp:function () {
+                     this.$http.jsonp("in_theaters?city=%E5%8C%97%E4%BA%AC&start=0&count=10").then(function (res) {
+                         this.msg = res;
+                     })
+                 },
+                 http:function () {
+                     this.$http({
+                         url:'',
+                         params:{
+                             city:'beijing'
+                         },
+                         headers:{},
+                         timeout:5,
+                         before:function () {}
+                     }).then(function () {
+                         
+                     })
+                 }
+             }
+         });
+     </script>
+</body>
+</html>

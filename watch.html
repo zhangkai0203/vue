@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>watch监听</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<label>{{msg}}</label>
+			<input type="text" v-model="msg"  value="" />
+		</div>
+		
+	</body>
+	<script>
+		
+		var app = new Vue({
+			el:'#app',
+			data:{
+				msg:'hello world'
+			},
+			watch:{
+				//监听的旧值和新值
+				msg:function(str,val){
+					console.log(str)
+				}
+			}
+		})
+		
+	</script>
+</html>
