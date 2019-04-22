@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/vue/2.6.4/vue.min.js"></script>
+		<script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+	</head>
+
+	<body>
+
+		<div id="app">
+			{{msg}}
+			<button @click="tab">按钮</button>
+		</div>
+
+	</body>
+	<script>
+		axios.defaults.baseURL = 'http://127.0.0.1';
+		//axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+		//axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+		//请求前
+		axios.interceptors.request.use(function(config) {
+			alert("发送前触发")
+			// 在发送请求之前做些什么
+			return config;
+		}, function(error) {
+			// 对请求错误做些什么
+			return Promise.reject(error);
+		});
+
+		// 添加响应拦截器
+		axios.interceptors.response.use(function(response) {
+			alert("响应后触发")
+			// 对响应数据做点什么
+			return response;
+		}, function(error) {
+			// 对响应错误做点什么
+			return Promise.reject(error);
+		});
+
+		var app = new Vue({
+			el: "#app",
+			data: {
+				msg: "hello"
+			},
+			methods: {
+				tab: function() {
+
+					//这里使用这种发送数据是解决POST发送数据收不到的问题
+					/*axios.post('/index.php',"name=zhangsan&age=12")
+					  .then(function (response) {
+					    console.log(response);
+					  })
+					  .catch(function (error) {
+					    console.log(error);
+					  }
+					);*/
+
+					axios.get('index.php', {
+							params: {
+								name: "zhangsan"
+							}
+						})
+						.then(function(res) {
+							console.log(res.request.response);
+						})
+						.catch(function(err) {
+							console.log(err);
+						})
+
+				}
+			}
+		})
+	</script>
+
+</html>

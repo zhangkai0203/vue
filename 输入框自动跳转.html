@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>激活码效果autofocus</title>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+		<div id="app" class="box">
+			<input type="text" ref="input1" @keyup="add1" v-model="code1" maxlength="4" onfocus="imeMode='inactive'" autofocus/>
+			<input type="text" ref="input2" @keyup="add2" v-model="code2" maxlength="4"/>
+			<input type="text" ref="input3" @keyup="add3" v-model="code3" maxlength="4"/>
+			<input type="text" ref="input4" @keyup="add4" v-model="code4" maxlength="4"/>
+		</div>
+	</body>
+	<script>
+		var app = new Vue({
+			el:'#app',
+			data:{
+				code1:'',
+				code2:'',
+				code3:'',
+				code4:'',
+			},
+			methods:{
+				/*btn:function(){
+					this.$refs.input2.focus()
+				},*/
+				add1:function(){
+	                var code1 = this.code1
+			        if(code1.length == 4){
+			        	this.$refs.input2.focus()
+			        }
+				},
+				add2:function(){
+					var code2 = this.code2
+					if(code2.length == 4){
+			        	this.$refs.input3.focus()
+			        }
+				},
+				add3:function(){
+					var code3 = this.code3
+					if(code3.length == 4){
+			        	this.$refs.input4.focus()
+			        }
+				},
+				add4:function(){
+					
+				}
+			}
+			
+			
+		})
+	</script>
+</html>
